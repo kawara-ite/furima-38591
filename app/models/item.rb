@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-
   belongs_to :user
   has_one_attached :image
   # has_one :order
@@ -11,11 +10,18 @@ class Item < ApplicationRecord
   belongs_to :scheduled_delivery
   belongs_to :shipping_fee_status
 
-  validates :name, :info, :price, :image, presence: true
-  validates :category_id, :sales_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id, numericality: { other_than: 1 , message: "can't be blank"}
-
-  
-  with_options presence: true, format: { with: /\A[0-9]+\z/, message: 'Price is invalid. Input half-width characters' } do
-    validates :price, numericality: { in: 300..9_999_999, message: 'Price is out of setting range'}
+  with_options presence: true do
+    validates :image
+    validates :name
+    validates :info
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_000_000, message: 'is out of setting range' },
+                      format: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters' }
+  end
+  with_options numericality: { other_than: 1, message: "can't be blank" } do
+    validates :category_id
+    validates :sales_status_id
+    validates :shipping_fee_status_id
+    validates :prefecture_id
+    validates :scheduled_delivery_id
   end
 end
