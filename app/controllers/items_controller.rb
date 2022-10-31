@@ -34,10 +34,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def set_item
-    @item = Item.find(params[:id])
-  end
-
 
   private
 
@@ -48,8 +44,10 @@ class ItemsController < ApplicationController
 
   def move_to_index
     item = Item.find(params[:id])
-    if item.user_id != current_user.id
-      redirect_to action: :index
-    end
+    render action: :index if item.user_id != current_user.id
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
