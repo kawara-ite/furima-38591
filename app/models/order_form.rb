@@ -3,11 +3,11 @@ class OrderForm
   attr_accessor :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :order_id, :user_id, :item_id
 
   with_options presence: true do
-    validates :postal_code format: { with: /\A\d{3}[-]\d{4}\z/, message: 'Postal code is invalid. Enter it as follows (e.g. 123-4567)' }
-    validates :prefecture_id numericality: { other_than: 1, message: "can't be blank" }
+    validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "Postal code is invalid. Enter it as follows (e.g. 123-4567)" }
+    validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :address
-    validates :phone_number format: { with: /\A\d{10,11}\z/, message: 'Phone number is too short' }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'Phone number is too short' }
     validates :order_id
     validates :user_id
     validates :item_id
