@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path if @item.order.present?
   end
 
   def update
@@ -38,7 +39,6 @@ class ItemsController < ApplicationController
     item.destroy
     redirect_to root_path
   end
-
 
   private
 
