@@ -7,8 +7,5 @@ FactoryBot.define do
     address        { '青山１−１' }
     building       { 'まーどれ' }
     phone_number   { '09012345678' }
-    user_id        { Faker::Number.between(from: 2, to: 49) }
-    item_id        { Faker::Number.between(from: 2, to: 49) }
-    order_id       { Faker::Number.between(from: 2, to: 49) }
   end
 end
