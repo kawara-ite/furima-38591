@@ -7,6 +7,5 @@ FactoryBot.define do
     address        { Faker::Address.secondary_address }
     building       { 'まーどれ' }
     phone_number   { '09012345678' }
-    
   end
 end
