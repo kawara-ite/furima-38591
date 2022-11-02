@@ -1,7 +1,12 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+
   def index
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
+    if current_user == @item.user || @item.order.present?
+      redirect_to root_path
+    end
   end
 
   def create
@@ -31,5 +36,5 @@ class OrdersController < ApplicationController
         card: order_address_params[:token],
         currency: 'jpy'
       )
-    end
+  end
 end
