@@ -49,7 +49,7 @@ class ItemsController < ApplicationController
 
   def move_to_index
     item = Item.find(params[:id])
-    render action: :index if item.user_id != current_user.id
+    redirect_to root_path if item.user_id != current_user.id
   end
 
   def set_item
